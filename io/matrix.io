@@ -1,12 +1,14 @@
 Matrix := List clone do(
+	// Sets size to y rows and x columns and empties contents
 	dim := method(x,y,
 		self x := x
 		self y := y
 
-		for(i,1,y,
-			row := List clone
-			for(j, 1, x, row append(nil))
-			append(row)
+		setSize(y)
+
+		for(i,0,y-1,
+			row := List clone setSize(x)
+			atPut(i, row)
 		)
 	)
 
@@ -18,6 +20,7 @@ Matrix := List clone do(
 		at(y) at(x)
 	)
 
+	// Create a transposed Matrix with x rows and y columns
 	transpose := method(
 		new_matrix := Matrix clone
 		new_matrix dim(y,x)
