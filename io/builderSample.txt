@@ -1,0 +1,14 @@
+Builder ul({"foo":"bar"},
+	li(
+		a({"href":"www.iolanguage.com"},"Io"),
+		a(
+			strong("Ruby")
+		)
+	),
+	li("Javascript"),
+	li({"tricky":"yes"},
+		a("Perl")
+	),
+	book({"author":"Tate", "title": "7langs"},"7langs"),
+	empty()
+)
