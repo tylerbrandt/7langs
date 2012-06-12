@@ -14,3 +14,9 @@ Exercises/scratch work from the book __Seven Languages in Seven Weeks__ by Bruce
   * Everything is a method (even control structures) makes proper indentation/highlighting difficult. I went with a "if it's too jammed up to read, then add a newline" heuristic.
   * Really appreciate the guts to pick ONE method of inheritance and go all-in on it. Prototypal inheritance is intuitive and requires a lot less boilerplate than classical.
   * There's often more than one way to say the same thing in Io (e.g. if syntax, parentheses on method calls) which gets confusing.
+* Prolog
+  * Seem to be different dialects around. gprolog doesn't understand a lot of the terms you throw at it (inc, succ, etc) leading to the frustrating 'existence_error'.
+  * `is` is not commutative. It actually behaves more like assignment
+  * It's nice that you don't have to code the algorithms, but the syntax is pretty unforgiving, and it's hard to describe the problem in a way that prolog understands.
+  * In the case of sort, I still had to code the algorithm, albeit in a declarative rather than imperative way.
+  * `trace.` to turn on debugging. `notrace.` to turn it off.
