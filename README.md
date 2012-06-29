@@ -32,3 +32,4 @@ Exercises/scratch work from the book __Seven Languages in Seven Weeks__ by Bruce
   * Really nice range syntax: `min to max by 2`
   * Like Ruby, functions with no arguments have optional parens (makes it difficult to tell what is a function and what is a property). Functions with a single argument still require parens unlike Ruby.
   * `Unit` = ???
+  * It's been a long time since I've had to deal with types; it's a headache. Especially with Scala generic types (Any, Unit, Nothing, etc) it's pretty hard to decipher the errors.
