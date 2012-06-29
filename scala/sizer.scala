@@ -4,7 +4,13 @@ import Actor._
 
 // START:loader
 object PageLoader {
- def getPageSize(url : String) = Source.fromURL(url).mkString.length
+ def getPageInfo(url : String):(Int,List[String]) = {
+ 	val sourceString = Source.fromURL(url).mkString
+ 	val linkPattern = """<a.+href=["']([^'"]+)["']>[^<]+</a>""".r
+ 	val links = (for(m <- linkPattern.findAllIn(sourceString).matchData; 
+ 		grps <- m.subgroups) yield grps).toList
+ 	return (sourceString.length, links)
+ }
 }
 // END:loader
 
@@ -25,7 +31,8 @@ def timeMethod(method: () => Unit) = {
 // START:sequential
 def getPageSizeSequentially() = {
  for(url <- urls) {
-   println("Size for " + url + ": " + PageLoader.getPageSize(url))
+   val info = PageLoader.getPageInfo(url)
+   println("Size for " + url + ": " + info._1 + ", num links: " + info._2.length)
  }
 }
 // END:sequential
@@ -35,13 +42,13 @@ def getPageSizeConcurrently() = {
  val caller = self
 
  for(url <- urls) {
-   actor { caller ! (url, PageLoader.getPageSize(url)) }
+   actor { caller ! (url, PageLoader.getPageInfo(url)) }
  }
 
  for(i <- 1 to urls.size) {
    receive {
-     case (url, size) =>
-       println("Size for " + url + ": " + size)            
+     case (url, (size, links:List[String])) =>
+       println("Size for " + url + ": " + size + ", num links: " + links.length)            
    }
  }
 }
